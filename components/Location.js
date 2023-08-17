@@ -4,16 +4,22 @@ import cloudy from '../assets/Cloudy.svg'
 import rainy from '../assets/Rainy.svg'
 import partlyCloudy from '../assets/PartlyCloudy.svg'
 
-function WeatherCard(props) {
+function Location({ data, location, setLocation }) {
+	const foundLocation = data.find((cityObj) => cityObj.city === location)
 	const forecastIcons = {
 		Sunny: sunny,
 		Cloudy: cloudy,
 		Rainy: rainy,
 		PartlyCloudy: partlyCloudy
 	}
-	const iconSrc = forecastIcons[props.city.forecast]
+	const iconSrc = forecastIcons[foundLocation.forecast]
+
+	if (!foundLocation) {
+		return null
+	}
 	return (
 		<div className='card'>
+			<h4>Your Location's Weather</h4>
 			<div className='img-container'>
 				<img
 					className='card-img-top'
@@ -23,12 +29,12 @@ function WeatherCard(props) {
 				/>
 			</div>
 			<div class='card-body'>
-				<h3 className='card-title'>{props.city.city}</h3>
-				<h5 className='card-text'>{props.city.temperature}</h5>
-				<h5 className='card-text'>{props.city.forecast}</h5>
+				<h3 className='card-title'>The weather in {foundLocation.city} is</h3>
+				<h5 className='card-text'>{foundLocation.temperature}</h5>
+				<h5 className='card-text'>It is {foundLocation.forecast} out today</h5>
 			</div>
 		</div>
 	)
 }
 
-export default WeatherCard
+export default Location
