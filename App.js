@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import WeatherCard from './components/WeatherCard'
 import Location from './components/Location'
+import Form from './components/Form'
 import cities from './data'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 					<WeatherCard key={index} city={city} />
 				))}
 				<Location data={cities} location={location} setLocation={setLocation} />
+				<Form location={location} setLocation={setLocation} />
 			</div>
 		</>
 	)

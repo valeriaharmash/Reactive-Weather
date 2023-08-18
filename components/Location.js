@@ -12,11 +12,12 @@ function Location({ data, location, setLocation }) {
 		Rainy: rainy,
 		PartlyCloudy: partlyCloudy
 	}
-	const iconSrc = forecastIcons[foundLocation.forecast]
 
 	if (!foundLocation) {
-		return null
+		return <h1>Location is not found</h1>
 	}
+	const iconSrc = forecastIcons[foundLocation.forecast]
+
 	return (
 		<div className='card'>
 			<h4>Your Location's Weather</h4>
